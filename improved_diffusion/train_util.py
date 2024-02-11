@@ -188,7 +188,10 @@ class TrainLoop:
         for i in range(0, batch.shape[0], self.microbatch):
 
             micro = batch[i : i + self.microbatch].to(dist_util.dev())
-            del cond['reward']
+            try:
+                del cond['reward']
+            except:
+                print("cond has no key 'reward'")
             micro_cond = {
                 k: v[i : i + self.microbatch].to(dist_util.dev())
                 for k, v in cond.items()
