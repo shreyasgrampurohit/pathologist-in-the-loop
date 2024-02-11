@@ -28,6 +28,7 @@ def load_data(
         raise ValueError("unspecified data directory")
     all_files = _list_image_files_recursively(data_dir)
     classes = None
+    scores = None
     if class_cond:
         # Assume classes are the first part of the filename,
         # before an underscore.
